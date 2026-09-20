@@ -34,7 +34,7 @@ public class Esp {
             if (k == 2 && !c.espPassive) continue;
             if (mc.player.distanceTo(e) > c.espRange) continue;
 
-            int color = k == 0 ? COL_PLAYER : k == 1 ? COL_HOSTILE : COL_PASSIVE;
+            int color = 0xFF000000 | (k == 0 ? c.colPlayer : k == 1 ? c.colHostile : c.colPassive);
             Vec3d p = e.getLerpedPos(delta);
             double w = e.getWidth() / 2.0, h = e.getHeight();
 
