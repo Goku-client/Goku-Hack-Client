@@ -1,4 +1,4 @@
-ifage com.research.client;
+package com.research.client;
 
 import com.mojang.brigadier.Command;
 import net.fabricmc.api.ClientModInitializer;
@@ -46,4 +46,5 @@ public class ResearchClient implements ClientModInitializer {
             }
         }
     }
+}
                                                             }
