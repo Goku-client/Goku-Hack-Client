@@ -21,6 +21,9 @@ public class Config {
     public boolean espHostile = true;
     public boolean espPassive = false;
     public double espRange = 64;
+    public int colPlayer = 0x33CCFF;
+    public int colHostile = 0xFF3333;
+    public int colPassive = 0x55FF55;
 
     // Aim
     public boolean aim = false;
@@ -30,7 +33,19 @@ public class Config {
     public boolean aimVisibleOnly = true;
     public double aimRange = 20;
     public double aimFov = 90;
-    public double aimSmooth = 0.35; // 0.05 slow .. 1 instant
+    public double aimSmooth = 0.35;
+
+    // Combat
+    public boolean autoAttack = false;
+    public boolean attackPlayers = true;
+    public boolean attackMobs = true;
+    public boolean totemAuto = false;   // refill offhand automatically
+    public boolean totemHover = false;  // swap totem to offhand when hovering it in inventory
+    public double totemDelay = 2;       // ticks between swaps
+
+    // Move
+    public boolean speed = false;
+    public double speedLevel = 5;       // same as Speed effect level (I to X)
 
     static Path path() {
         return FabricLoader.getInstance().getConfigDir().resolve("research_client.json");
@@ -45,4 +60,4 @@ public class Config {
     public static void save() {
         try { Files.writeString(path(), GSON.toJson(I)); } catch (Exception ignored) {}
     }
-  }
+}
