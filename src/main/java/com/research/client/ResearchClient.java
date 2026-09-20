@@ -37,6 +37,13 @@ public class ResearchClient implements ClientModInitializer {
         }
         altWasDown = alt;
 
-        if (mc.player != null && mc.world != null && mc.currentScreen == null) Aim.tick(mc);
+if (mc.player != null && mc.world != null) {
+            Speed.tick(mc);
+            AutoTotem.tick(mc);
+            if (mc.currentScreen == null) {
+                Aim.tick(mc);
+                Attack.tick(mc);
+            }
+        }
     }
                                                             }
