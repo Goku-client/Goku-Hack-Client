@@ -112,13 +112,20 @@ public class Esp {
 
     private static void line(DrawContext ctx, int x0, int y0, int x1, int y1, int color) {
         int dx = x1 - x0, dy = y1 - y0;
-        int steps = Math.max(Math.abs(dx), Math.abs(dy));
+        int steps = Math.min(Math.max(Math.abs(dx), Math.abs(dy)), 3000);
         if (steps == 0) return;
-        steps = Math.min(steps, 3000);
-        for (int i = 0; i <= steps; i++) {
-            int x = x0 + dx * i / steps;
-            int y = y0 + dy * i / steps;
-            ctx.fill(x, y, x + 1, y + 1, color);
+        boolean horiz = Math.abs(dx) >= Math.abs(dy);
+        int runStart = 0, runMinor = horiz ? y0 : x0;
+        for (int i = 1; i <= steps + 1; i++) {
+            int x = x0 + dx * Math.min(i, steps) / steps;
+            int y = y0 + dy * Math.min(i, steps) / steps;
+            int minor = horiz ? y : x;
+            if (minor != runMinor || i == steps + 1) {
+                int a = runStart, b = i;
+                if (horiz) ctx.fill(x0 + dx * a / steps, runMinor, x0 + dx * b / steps + 1, runMinor + 1, color);
+                else ctx.fill(runMinor, y0 + dy * a / steps, runMinor + 1, y0 + dy * b / steps + 1, color);
+                runStart = i; runMinor = minor;
+            }
         }
     }
                                               }
