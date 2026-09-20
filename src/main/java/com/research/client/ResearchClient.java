@@ -1,4 +1,4 @@
-package com.research.client;
+ifage com.research.client;
 
 import com.mojang.brigadier.Command;
 import net.fabricmc.api.ClientModInitializer;
@@ -37,7 +37,7 @@ public class ResearchClient implements ClientModInitializer {
         }
         altWasDown = alt;
 
-if (mc.player != null && mc.world != null) {
+            if (mc.player != null && mc.world != null) {
             Speed.tick(mc);
             AutoTotem.tick(mc);
             if (mc.currentScreen == null) {
